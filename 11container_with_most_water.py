@@ -21,3 +21,21 @@
 #                 _area = min(height[i], height[j]) * (j-i)
 #                 area = max(area, _area)
 #         return area
+
+class Solution:
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        l = 0
+        r = len(height) - 1
+        contain = 0
+        while l < r:
+            contain = max(contain, (r - l) * min(height[l], height[r]))
+            if height[l] > height[r]:
+                r -= 1
+            else:
+                l += 1
+
+        return contain
